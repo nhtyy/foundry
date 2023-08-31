@@ -149,6 +149,25 @@ pub fn apply<DB: DatabaseExt>(
             .map_err(Into::into),
         HEVMCalls::EthGetLogs(inner) => eth_getlogs(data, inner),
         HEVMCalls::Rpc(inner) => rpc(data, inner),
+        HEVMCalls::MakePersistentSlot0(tup) => {
+            data.db.add_persistent_slots(tup.0, tup.1.clone());
+            Ok(Bytes::new())
+        },
+        HEVMCalls::MakePersistentSlot1(tup) => {
+            for (i, addr) in tup.0.iter().enumerate() {
+                data.db.add_persistent_slots(*addr, tup.1[i].clone());
+            }
+            Ok(Bytes::new())
+        },
+        HEVMCalls::RemovePersistentSlots(tup) => {
+
+            if data.db.is_persistent(&tup.0) {
+                return Some(Err(fmt_err!("Cannot remove persistent slots from persistent account")))
+            }
+
+            data.db.remove_persistent_slots(tup.0, tup.1.clone());
+            Ok(Bytes::new())
+        },
         _ => return None,
     };
     Some(result)

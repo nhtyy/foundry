@@ -2555,6 +2555,63 @@ pub mod hevm {
                     ],
                 ),
                 (
+                    ::std::borrow::ToOwned::to_owned("makePersistentSlot"),
+                    ::std::vec![
+                        ::ethers_core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned("makePersistentSlot"),
+                            inputs: ::std::vec![
+                                ::ethers_core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers_core::abi::ethabi::ParamType::Address,
+                                    internal_type: ::core::option::Option::None,
+                                },
+                                ::ethers_core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers_core::abi::ethabi::ParamType::Array(
+                                        ::std::boxed::Box::new(
+                                            ::ethers_core::abi::ethabi::ParamType::Uint(256usize),
+                                        ),
+                                    ),
+                                    internal_type: ::core::option::Option::None,
+                                },
+                            ],
+                            outputs: ::std::vec![],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers_core::abi::ethabi::StateMutability::NonPayable,
+                        },
+                        ::ethers_core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned("makePersistentSlot"),
+                            inputs: ::std::vec![
+                                ::ethers_core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers_core::abi::ethabi::ParamType::Array(
+                                        ::std::boxed::Box::new(
+                                            ::ethers_core::abi::ethabi::ParamType::Address,
+                                        ),
+                                    ),
+                                    internal_type: ::core::option::Option::None,
+                                },
+                                ::ethers_core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers_core::abi::ethabi::ParamType::Array(
+                                        ::std::boxed::Box::new(
+                                            ::ethers_core::abi::ethabi::ParamType::Array(
+                                                ::std::boxed::Box::new(
+                                                    ::ethers_core::abi::ethabi::ParamType::Uint(256usize),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    internal_type: ::core::option::Option::None,
+                                },
+                            ],
+                            outputs: ::std::vec![],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers_core::abi::ethabi::StateMutability::NonPayable,
+                        },
+                    ],
+                ),
+                (
                     ::std::borrow::ToOwned::to_owned("mockCall"),
                     ::std::vec![
                         ::ethers_core::abi::ethabi::Function {
@@ -3758,6 +3815,35 @@ pub mod hevm {
                                 ::ethers_core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
                                     kind: ::ethers_core::abi::ethabi::ParamType::String,
+                                    internal_type: ::core::option::Option::None,
+                                },
+                            ],
+                            outputs: ::std::vec![],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers_core::abi::ethabi::StateMutability::NonPayable,
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("removePersistentSlots"),
+                    ::std::vec![
+                        ::ethers_core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "removePersistentSlots",
+                            ),
+                            inputs: ::std::vec![
+                                ::ethers_core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers_core::abi::ethabi::ParamType::Address,
+                                    internal_type: ::core::option::Option::None,
+                                },
+                                ::ethers_core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers_core::abi::ethabi::ParamType::Array(
+                                        ::std::boxed::Box::new(
+                                            ::ethers_core::abi::ethabi::ParamType::Uint(256usize),
+                                        ),
+                                    ),
                                     internal_type: ::core::option::Option::None,
                                 },
                             ],
@@ -6356,6 +6442,26 @@ pub mod hevm {
                 .method_hash([29, 158, 38, 158], p0)
                 .expect("method not found (this should never happen)")
         }
+        ///Calls the contract's `makePersistentSlot` (0x282c16cd) function
+        pub fn make_persistent_slot_0(
+            &self,
+            p0: ::ethers_core::types::Address,
+            p1: ::std::vec::Vec<::ethers_core::types::U256>,
+        ) -> ::ethers_contract::builders::ContractCall<M, ()> {
+            self.0
+                .method_hash([40, 44, 22, 205], (p0, p1))
+                .expect("method not found (this should never happen)")
+        }
+        ///Calls the contract's `makePersistentSlot` (0x31fc0ded) function
+        pub fn make_persistent_slot_1(
+            &self,
+            p0: ::std::vec::Vec<::ethers_core::types::Address>,
+            p1: ::std::vec::Vec<::std::vec::Vec<::ethers_core::types::U256>>,
+        ) -> ::ethers_contract::builders::ContractCall<M, ()> {
+            self.0
+                .method_hash([49, 252, 13, 237], (p0, p1))
+                .expect("method not found (this should never happen)")
+        }
         ///Calls the contract's `mockCall` (0xb96213e4) function
         pub fn mock_call_0(
             &self,
@@ -6839,6 +6945,16 @@ pub mod hevm {
         ) -> ::ethers_contract::builders::ContractCall<M, ()> {
             self.0
                 .method_hash([241, 175, 224, 77], p0)
+                .expect("method not found (this should never happen)")
+        }
+        ///Calls the contract's `removePersistentSlots` (0x5b425888) function
+        pub fn remove_persistent_slots(
+            &self,
+            p0: ::ethers_core::types::Address,
+            p1: ::std::vec::Vec<::ethers_core::types::U256>,
+        ) -> ::ethers_contract::builders::ContractCall<M, ()> {
+            self.0
+                .method_hash([91, 66, 88, 136], (p0, p1))
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `resetNonce` (0x1c72346d) function
@@ -8912,6 +9028,44 @@ pub mod hevm {
     )]
     #[ethcall(name = "makePersistent", abi = "makePersistent(address[])")]
     pub struct MakePersistent1Call(pub ::std::vec::Vec<::ethers_core::types::Address>);
+    ///Container type for all input parameters for the `makePersistentSlot` function with signature `makePersistentSlot(address,uint256[])` and selector `0x282c16cd`
+    #[derive(
+        Clone,
+        ::ethers_contract::EthCall,
+        ::ethers_contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[ethcall(
+        name = "makePersistentSlot",
+        abi = "makePersistentSlot(address,uint256[])"
+    )]
+    pub struct MakePersistentSlot0Call(
+        pub ::ethers_core::types::Address,
+        pub ::std::vec::Vec<::ethers_core::types::U256>,
+    );
+    ///Container type for all input parameters for the `makePersistentSlot` function with signature `makePersistentSlot(address[],uint256[][])` and selector `0x31fc0ded`
+    #[derive(
+        Clone,
+        ::ethers_contract::EthCall,
+        ::ethers_contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[ethcall(
+        name = "makePersistentSlot",
+        abi = "makePersistentSlot(address[],uint256[][])"
+    )]
+    pub struct MakePersistentSlot1Call(
+        pub ::std::vec::Vec<::ethers_core::types::Address>,
+        pub ::std::vec::Vec<::std::vec::Vec<::ethers_core::types::U256>>,
+    );
     ///Container type for all input parameters for the `mockCall` function with signature `mockCall(address,bytes,bytes)` and selector `0xb96213e4`
     #[derive(
         Clone,
@@ -9570,6 +9724,25 @@ pub mod hevm {
     )]
     #[ethcall(name = "removeFile", abi = "removeFile(string)")]
     pub struct RemoveFileCall(pub ::std::string::String);
+    ///Container type for all input parameters for the `removePersistentSlots` function with signature `removePersistentSlots(address,uint256[])` and selector `0x5b425888`
+    #[derive(
+        Clone,
+        ::ethers_contract::EthCall,
+        ::ethers_contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[ethcall(
+        name = "removePersistentSlots",
+        abi = "removePersistentSlots(address,uint256[])"
+    )]
+    pub struct RemovePersistentSlotsCall(
+        pub ::ethers_core::types::Address,
+        pub ::std::vec::Vec<::ethers_core::types::U256>,
+    );
     ///Container type for all input parameters for the `resetNonce` function with signature `resetNonce(address)` and selector `0x1c72346d`
     #[derive(
         Clone,
@@ -10574,6 +10747,8 @@ pub mod hevm {
         MakePersistent2(MakePersistent2Call),
         MakePersistent3(MakePersistent3Call),
         MakePersistent1(MakePersistent1Call),
+        MakePersistentSlot0(MakePersistentSlot0Call),
+        MakePersistentSlot1(MakePersistentSlot1Call),
         MockCall0(MockCall0Call),
         MockCall1(MockCall1Call),
         MockCallRevert0(MockCallRevert0Call),
@@ -10620,6 +10795,7 @@ pub mod hevm {
         RememberKey(RememberKeyCall),
         RemoveDir(RemoveDirCall),
         RemoveFile(RemoveFileCall),
+        RemovePersistentSlots(RemovePersistentSlotsCall),
         ResetNonce(ResetNonceCall),
         ResumeGasMetering(ResumeGasMeteringCall),
         RevertTo(RevertToCall),
@@ -11108,6 +11284,18 @@ pub mod hevm {
                 return Ok(Self::MakePersistent1(decoded));
             }
             if let Ok(decoded)
+                = <MakePersistentSlot0Call as ::ethers_core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::MakePersistentSlot0(decoded));
+            }
+            if let Ok(decoded)
+                = <MakePersistentSlot1Call as ::ethers_core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::MakePersistentSlot1(decoded));
+            }
+            if let Ok(decoded)
                 = <MockCall0Call as ::ethers_core::abi::AbiDecode>::decode(data) {
                 return Ok(Self::MockCall0(decoded));
             }
@@ -11304,6 +11492,12 @@ pub mod hevm {
             if let Ok(decoded)
                 = <RemoveFileCall as ::ethers_core::abi::AbiDecode>::decode(data) {
                 return Ok(Self::RemoveFile(decoded));
+            }
+            if let Ok(decoded)
+                = <RemovePersistentSlotsCall as ::ethers_core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::RemovePersistentSlots(decoded));
             }
             if let Ok(decoded)
                 = <ResetNonceCall as ::ethers_core::abi::AbiDecode>::decode(data) {
@@ -11810,6 +12004,12 @@ pub mod hevm {
                 Self::MakePersistent1(element) => {
                     ::ethers_core::abi::AbiEncode::encode(element)
                 }
+                Self::MakePersistentSlot0(element) => {
+                    ::ethers_core::abi::AbiEncode::encode(element)
+                }
+                Self::MakePersistentSlot1(element) => {
+                    ::ethers_core::abi::AbiEncode::encode(element)
+                }
                 Self::MockCall0(element) => {
                     ::ethers_core::abi::AbiEncode::encode(element)
                 }
@@ -11924,6 +12124,9 @@ pub mod hevm {
                     ::ethers_core::abi::AbiEncode::encode(element)
                 }
                 Self::RemoveFile(element) => {
+                    ::ethers_core::abi::AbiEncode::encode(element)
+                }
+                Self::RemovePersistentSlots(element) => {
                     ::ethers_core::abi::AbiEncode::encode(element)
                 }
                 Self::ResetNonce(element) => {
@@ -12196,6 +12399,12 @@ pub mod hevm {
                 Self::MakePersistent2(element) => ::core::fmt::Display::fmt(element, f),
                 Self::MakePersistent3(element) => ::core::fmt::Display::fmt(element, f),
                 Self::MakePersistent1(element) => ::core::fmt::Display::fmt(element, f),
+                Self::MakePersistentSlot0(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
+                Self::MakePersistentSlot1(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
                 Self::MockCall0(element) => ::core::fmt::Display::fmt(element, f),
                 Self::MockCall1(element) => ::core::fmt::Display::fmt(element, f),
                 Self::MockCallRevert0(element) => ::core::fmt::Display::fmt(element, f),
@@ -12254,6 +12463,9 @@ pub mod hevm {
                 Self::RememberKey(element) => ::core::fmt::Display::fmt(element, f),
                 Self::RemoveDir(element) => ::core::fmt::Display::fmt(element, f),
                 Self::RemoveFile(element) => ::core::fmt::Display::fmt(element, f),
+                Self::RemovePersistentSlots(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
                 Self::ResetNonce(element) => ::core::fmt::Display::fmt(element, f),
                 Self::ResumeGasMetering(element) => ::core::fmt::Display::fmt(element, f),
                 Self::RevertTo(element) => ::core::fmt::Display::fmt(element, f),
@@ -12829,6 +13041,16 @@ pub mod hevm {
             Self::MakePersistent1(value)
         }
     }
+    impl ::core::convert::From<MakePersistentSlot0Call> for HEVMCalls {
+        fn from(value: MakePersistentSlot0Call) -> Self {
+            Self::MakePersistentSlot0(value)
+        }
+    }
+    impl ::core::convert::From<MakePersistentSlot1Call> for HEVMCalls {
+        fn from(value: MakePersistentSlot1Call) -> Self {
+            Self::MakePersistentSlot1(value)
+        }
+    }
     impl ::core::convert::From<MockCall0Call> for HEVMCalls {
         fn from(value: MockCall0Call) -> Self {
             Self::MockCall0(value)
@@ -13057,6 +13279,11 @@ pub mod hevm {
     impl ::core::convert::From<RemoveFileCall> for HEVMCalls {
         fn from(value: RemoveFileCall) -> Self {
             Self::RemoveFile(value)
+        }
+    }
+    impl ::core::convert::From<RemovePersistentSlotsCall> for HEVMCalls {
+        fn from(value: RemovePersistentSlotsCall) -> Self {
+            Self::RemovePersistentSlots(value)
         }
     }
     impl ::core::convert::From<ResetNonceCall> for HEVMCalls {

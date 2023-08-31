@@ -271,6 +271,14 @@ pub trait DatabaseExt: Database<Error = DatabaseError> {
         }
     }
 
+    /// Makes slots persistent for the given account
+    /// Returns false if the account was already persistent
+    fn add_persistent_slots(&mut self, account: Address, slots: Vec<U256>);
+
+    /// Removes persistent slots for the given account
+    /// Returns false if the account was not persistent
+    fn remove_persistent_slots(&mut self, account: Address, slots: Vec<U256>);
+
     /// Grants cheatcode access for the given `account`
     ///
     /// Returns true if the `account` already has access
@@ -1261,6 +1269,34 @@ impl DatabaseExt for Backend {
         self.inner.persistent_accounts.insert(account)
     }
 
+    fn add_persistent_slots(&mut self, account: Address, mut slots: Vec<U256>) {
+        trace!(?account, ?slots, "add persistent slots");
+        match self.inner.persistent_slots.get_mut(&account) {
+            Some(entry) => {
+                // dont add slots twice
+                slots.retain(|slot| !entry.contains(slot));
+                entry.extend(slots);
+            },
+            None => {
+                self.inner.persistent_slots.insert(account, slots);
+            }
+        }
+    }
+
+    fn remove_persistent_slots(&mut self, account: Address, slots: Vec<U256>) {
+        trace!(?account, ?slots, "remove persistent slots");
+        match self.inner.persistent_slots.get_mut(&account) {
+            Some(entry) => {
+                // only keep slots that are not in the `slots` vec
+                entry.retain(|slot| !slots.contains(slot));
+            },
+            None => {
+                warn!(?account, "tried to remove persistent slots but no slots are present")
+                // no slots to begin with so nothing to remove 
+            }
+        }
+    }
+
     fn allow_cheatcode_access(&mut self, account: Address) -> bool {
         trace!(?account, "allow cheatcode access");
         self.inner.cheatcode_access_accounts.insert(account)
@@ -1475,6 +1511,9 @@ pub struct BackendInner {
     ///
     /// See also [`clone_data()`]
     pub persistent_accounts: HashSet<Address>,
+    /// A mapping of addresses to their persistent storage slots
+    /// useful for rolling a fork and wanting to override a slot at all blocks
+    pub persistent_slots: HashMap<Address, Vec<U256>>,
     /// The configured precompile spec id
     pub precompile_id: revm::precompile::SpecId,
     /// All accounts that are allowed to execute cheatcodes
@@ -1661,6 +1700,7 @@ impl Default for BackendInner {
             caller: None,
             next_fork_id: Default::default(),
             persistent_accounts: Default::default(),
+            persistent_slots: Default::default(),
             precompile_id: revm::precompile::SpecId::LATEST,
             // grant the cheatcode,default test and caller address access to execute cheatcodes
             // itself

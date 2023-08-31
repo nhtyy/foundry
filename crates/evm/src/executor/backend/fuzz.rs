@@ -215,6 +215,14 @@ impl<'a> DatabaseExt for FuzzBackendWrapper<'a> {
         self.backend.to_mut().add_persistent_account(account)
     }
 
+    fn add_persistent_slots(&mut self, account:Address, slots:Vec<U256>) {
+        self.backend.to_mut().add_persistent_slots(account, slots)
+    }
+
+    fn remove_persistent_slots(&mut self, account:Address, slots:Vec<U256>) {
+        self.backend.to_mut().remove_persistent_slots(account, slots)
+    }
+
     fn allow_cheatcode_access(&mut self, account: Address) -> bool {
         self.backend.to_mut().allow_cheatcode_access(account)
     }
